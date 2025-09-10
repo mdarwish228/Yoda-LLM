@@ -1,7 +1,7 @@
 [project]
 name = "yoda-llm"
 version = "0.1.0"
-description = "Add your description here"
+description = "Yoda LLM UI and CLI application"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
