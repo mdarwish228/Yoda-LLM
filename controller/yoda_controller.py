@@ -2,10 +2,10 @@
 
 from typing import TYPE_CHECKING
 
-from model.ui.yoda_model import YodaModel
+from model.ui import YodaModel
 
 if TYPE_CHECKING:
-    from view.yoda_view import YodaView
+    from view import YodaView
 
 
 class YodaController:

@@ -10,9 +10,9 @@ project_root = Path(__file__).parent
 sys.path.insert(0, str(project_root))
 
 # Import local modules after path modification
-from controller.yoda_controller import YodaController  # noqa: E402
-from model.ui.yoda_model import YodaModel  # noqa: E402
-from view.yoda_view import YodaView  # noqa: E402
+from controller import YodaController  # noqa: E402
+from model.ui import YodaModel  # noqa: E402
+from view import YodaView  # noqa: E402
 
 
 def main() -> None:

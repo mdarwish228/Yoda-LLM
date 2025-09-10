@@ -14,10 +14,18 @@ Once installed, run the following commands:
 
 ```bash
 # Install dependencies
-uv sync  
+uv sync
+
+# Install correct version of python
+uv python install 3.13
 
 # Start the chatbot interface
-uv run main.py  
+uv run main.py
+
+# or 
+
+# Start the CLI tool
+uv run cli.py
 ```
 ## Learn More
 f you’d like to dive deeper into Large Language Models (LLMs) and the process behind building this chatbot, check out my medium article related to this project

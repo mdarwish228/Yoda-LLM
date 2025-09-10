@@ -5,7 +5,7 @@ from collections.abc import Callable
 
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-from model.yoda_conversation import YodaConversation
+from model import YodaConversation
 from util.prompt_util import prompt
 
 

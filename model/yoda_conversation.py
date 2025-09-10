@@ -2,7 +2,7 @@
 
 from dataclasses import dataclass, field
 
-from model.base_conversation import BaseConversation
+from model import BaseConversation
 
 
 @dataclass(frozen=True)
