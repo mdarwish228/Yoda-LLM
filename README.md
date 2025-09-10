@@ -1,19 +1,25 @@
 # Yoda Chat Bot
 
-A conversational AI chatbot that responds in the style of Yoda from Star Wars, built with Python and Transformers.
+![alt text](./resources/image.png)
 
-## Features
+A conversational AI chatbot that replies in the unique speech style of Yoda from *Star Wars*.  
 
-- **Yoda-style responses**: The bot responds in Yoda's unique speaking style and grammar
-- **Modern UI**: Clean, responsive graphical interface with dark theme
-- **Real-time chat**: Interactive chat interface with loading indicators
-- **MVC Architecture**: Well-structured codebase following Model-View-Controller pattern
-- **Async operations**: Non-blocking UI with threaded model operations
+## Getting Started  
 
-## Architecture
+To run the project locally, you’ll need the **UV build tool**. Follow the installation guide 
 
-The application follows the MVC (Model-View-Controller) pattern:
+👉 [UV Installation Guide](https://docs.astral.sh/uv/getting-started/installation/)  
 
-- **Model** (`model/ui/yoda_model.py`): Handles LLM operations and conversation management
-- **View** (`view/yoda_view.py`): Manages the user interface and user interactions
-- **Controller** (`controller/yoda_controller.py`): Coordinates between Model and View
+Once installed, run the following commands:  
+
+```bash
+# Install dependencies
+uv sync  
+
+# Start the chatbot interface
+uv run main.py  
+```
+## Learn More
+f you’d like to dive deeper into Large Language Models (LLMs) and the process behind building this chatbot, check out my medium article related to this project
+
+👉 [Talking with Machines: How LLMs Work and How to Fine-Tune Them](https://medium.com/@mohddarwish/talking-with-machines-fbb0a81dc782)
