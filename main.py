@@ -1,62 +1,64 @@
-"""Main entry point for the Yoda Chat Bot application."""
+"""Main UI entry point for the Yoda Chat Bot application."""
 
-from typing import NoReturn
+import sys
+import tkinter as tk
+from pathlib import Path
+from tkinter import messagebox
 
-from transformers import AutoModelForCausalLM, AutoTokenizer
+# Add the project root to the Python path
+project_root = Path(__file__).parent
+sys.path.insert(0, str(project_root))
 
-from model.yoda_conversation import YodaConversation
-from util.prompt_util import prompt
+# Import local modules after path modification
+from controller.yoda_controller import YodaController  # noqa: E402
+from model.ui.yoda_model import YodaModel  # noqa: E402
+from view.yoda_view import YodaView  # noqa: E402
 
 
-def main() -> NoReturn:
-    """Run the main Yoda Chat Bot application.
+def main() -> None:
+    """Main entry point for the Yoda Chat Bot UI application."""
+    try:
+        # Create the main window
+        root = tk.Tk()
 
-    Initializes the model, tokenizer, and conversation handler,
-    then enters an interactive chat loop with the user.
-    """
-    conversation = YodaConversation()
+        # Initialize MVC components
+        model = YodaModel()
+        view = YodaView(root)
+        controller = YodaController(model, view)
 
-    model_id = "unsloth/gemma-2-2b-it"
-    tokenizer = AutoTokenizer.from_pretrained(model_id)
-    model = AutoModelForCausalLM.from_pretrained(model_id, device_map="auto")
+        # Set window icon and title
+        root.title("Yoda Chat Bot")
 
-    print("Yoda Chat Bot - Ask me anything! (Type 'quit' or 'exit' to stop)")
-    print("-" * 50)
+        # Center the window on screen
+        root.update_idletasks()
+        width = root.winfo_width()
+        height = root.winfo_height()
+        x = (root.winfo_screenwidth() // 2) - (width // 2)
+        y = (root.winfo_screenheight() // 2) - (height // 2)
+        root.geometry(f"{width}x{height}+{x}+{y}")
 
-    while True:
-        try:
-            # Get user input
-            user_question = input("\nYou: ").strip()
+        # Handle window closing
+        def on_closing() -> None:
+            """Handle application closing."""
+            if controller.is_model_generating():
+                # Show confirmation dialog if model is generating
+                result = messagebox.askyesno(
+                    "Exit", "Yoda is still thinking. Are you sure you want to exit?"
+                )
+                if result:
+                    root.destroy()
+            else:
+                root.destroy()
 
-            # Check for empty input
-            if not user_question:
-                continue
+        root.protocol("WM_DELETE_WINDOW", on_closing)
 
-            # Check for exit commands
-            if user_question.lower() in ["quit", "exit", "bye", "goodbye"]:
-                print("Yoda: Farewell, young one. May the force be with you.")
-                break
+        # Start the UI
+        print("Starting Yoda Chat Bot UI...")
+        view.run()
 
-            # Add question to conversation
-            conversation.add_question(user_question)
-
-            # Get bot response
-            print("Yoda: ", end="", flush=True)
-            answer = prompt(model, tokenizer, str(conversation))
-            conversation.add_answer(answer)
-
-            # Print the response
-            print(answer.strip())
-
-        except KeyboardInterrupt:
-            print("\n\nYoda: Interrupted, you have been. Goodbye, young one.")
-            break
-        except EOFError:
-            print("\n\nYoda: End of input, I sense. Farewell.")
-            break
-        except Exception as e:
-            print(f"\nError: {e}")
-            print("Yoda: Confused, I am. Try again, you should.")
+    except Exception as e:
+        print(f"Error starting application: {e}")
+        sys.exit(1)
 
 
 if __name__ == "__main__":
