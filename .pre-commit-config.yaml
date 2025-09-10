@@ -1,0 +1,13 @@
+# Pre-commit hooks configuration
+# See https://pre-commit.com for more information
+
+repos:
+  # Ruff for linting and formatting
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.12.12  # Use the ref you want to point at
+    hooks:
+      # Run the linter
+      - id: ruff
+        args: [--fix]  # Automatically fix issues
+      # Run the formatter
+      - id: ruff-format

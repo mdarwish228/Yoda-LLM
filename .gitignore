@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[co]
+*.pyo
+*.pyd
+.Python
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Virtual environments
+.env
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Machine Learning / AI
+*.pkl
+*.h5
+*.pth
+*.pt
+*.bin
+*.safetensors
+.cache/
+transformers_cache/
+huggingface/
+
+# Development tools
+.ruff_cache/
+.mypy_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Logs
+*.log
